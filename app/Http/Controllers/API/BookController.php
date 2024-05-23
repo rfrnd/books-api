@@ -7,13 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Models\Book;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Tag(
+ *     name="book",
+ *     description="Operations about books"
+ * )
+ */
 class BookController extends Controller
 {
     /**
-     *
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/books",
+     *     tags={"book"},
+     *     description="Display a listing of items",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     )
+     * )
      */
     public function index()
     {
@@ -21,7 +35,7 @@ class BookController extends Controller
     }
 
     /**
-     * 
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -39,10 +53,8 @@ class BookController extends Controller
         }
     }
 
-
-
     /**
-     * 
+     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -65,7 +77,7 @@ class BookController extends Controller
     }
 
     /**
-     * Remove the specified item from storage.
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
